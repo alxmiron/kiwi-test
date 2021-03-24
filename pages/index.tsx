@@ -1,9 +1,23 @@
 import Head from "next/head";
-import Alert from "@kiwicom/orbit-components/lib/Alert";
+import { FormEventHandler, useState } from "react";
+import { Alert, InputField } from "@kiwicom/orbit-components";
 
 import styles from "../styles/Home.module.css";
+import { ConvertResponse } from "../interface/convert";
+import { request } from "../utils/request";
 
 export default function Home() {
+	const [inputValue, setInputValue] = useState("");
+	const [result, setResult] = useState("");
+
+	const handleSubmit: FormEventHandler = async (event) => {
+		event.preventDefault();
+		const number = inputValue.trim();
+		const response = await request<ConvertResponse>(`/api/convert/${number}`);
+		setResult(`Results for ${number}: ${response.result.join(", ")}`);
+		setInputValue("");
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -11,41 +25,21 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<Alert>Hello World!</Alert>
 			<main className={styles.main}>
 				<h1 className={styles.title}>
 					Welcome to <a href="https://nextjs.org">Next.js!</a>
 				</h1>
-
-				<p className={styles.description}>
-					Get started by editing <code className={styles.code}>pages/index.js</code>
-				</p>
-
-				<div className={styles.grid}>
-					<a href="https://nextjs.org/docs" className={styles.card}>
-						<h3>Documentation &rarr;</h3>
-						<p>Find in-depth information about Next.js features and API.</p>
-					</a>
-
-					<a href="https://nextjs.org/learn" className={styles.card}>
-						<h3>Learn &rarr;</h3>
-						<p>Learn about Next.js in an interactive course with quizzes!</p>
-					</a>
-
-					<a href="https://github.com/vercel/next.js/tree/master/examples" className={styles.card}>
-						<h3>Examples &rarr;</h3>
-						<p>Discover and deploy boilerplate example Next.js projects.</p>
-					</a>
-
-					<a
-						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-						className={styles.card}
-					>
-						<h3>Deploy &rarr;</h3>
-						<p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-					</a>
-				</div>
 			</main>
+
+			<form onSubmit={handleSubmit}>
+				<InputField
+					inputMode="numeric"
+					type="number"
+					value={inputValue}
+					onChange={(event) => setInputValue(event.currentTarget.value)}
+				/>
+			</form>
+			{result && <Alert>{result}</Alert>}
 
 			<footer className={styles.footer}>
 				<a
