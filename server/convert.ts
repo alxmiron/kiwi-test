@@ -19,7 +19,7 @@ function mergeCombinations(collectionA: string[], collectionB: string[]): string
 			acc.push(`${itemA}${itemB}`);
 		});
 		return acc;
-	}, []);
+	}, [] as string[]);
 }
 
 export function convertNumber(numberStr: string): string[] {

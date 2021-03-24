@@ -1,0 +1,5 @@
+query ConvertQuery($number: Int!) {
+	convert(number: $number) {
+		result
+	}
+}

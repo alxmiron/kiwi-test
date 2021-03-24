@@ -1,0 +1,7 @@
+type Convert {
+	result: [String!]!
+}
+
+type Query {
+	convert(number: Int!): Convert!
+}
