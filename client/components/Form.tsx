@@ -38,7 +38,7 @@ const FormComponent: FunctionComponent = () => {
 					type="number"
 					value={inputValue}
 					readOnly
-					suffix={<ButtonLink compact type="critical" iconLeft={<RemoveIcon />} onClick={onInputClear} />}
+					suffix={<ButtonLink compact type="secondary" iconLeft={<RemoveIcon />} onClick={onInputClear} />}
 				/>
 			</Box>
 			<Keypad onKeyPress={onKeyPress} />
