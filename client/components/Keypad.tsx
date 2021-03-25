@@ -8,7 +8,7 @@ interface KeypadProps {
 
 const KeypadComponent: FunctionComponent<KeypadProps> = ({ onKeyPress }) => {
 	return (
-		<Grid columns="1fr 1fr 1fr" rows="1fr 1fr 1fr" gap="8px" width="100%">
+		<Grid columns="1fr 1fr 1fr" rows="1fr 1fr 1fr" gap="8px" width="100%" dataTest="keypad">
 			{[1, 2, 3, 4, 5, 6, 7, 8, 9].map((idx) => (
 				<Button
 					key={idx}

@@ -6,6 +6,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"test": "jest ./test",
+		"cypress:open": "cypress open",
+		"cypress:run": "cypress run --record --key aa8f06d5-4753-476f-b2c9-b94c83311b0e",
 		"start": "next start"
 	},
 	"dependencies": {
@@ -23,6 +25,7 @@
 		"@types/node": "^14.14.35",
 		"@types/react": "^17.0.3",
 		"@types/styled-components": "^4.4.1",
+		"cypress": "^6.8.0",
 		"jest": "^26.6.3",
 		"prettier": "^2.2.1",
 		"ts-jest": "^26.5.4",

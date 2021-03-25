@@ -17,9 +17,9 @@ export const WordsList: FunctionComponent<WordsListProps> = ({ list, loading }) 
 	}, [list, loading]);
 
 	return (
-		<Box className={s.wordsList}>
+		<Box className={s.wordsList} dataTest="wordsList">
 			{listToRender.map((word, idx) => (
-				<Tag key={`${idx}-${word}`} size="normal">
+				<Tag key={`${idx}-${word}`} size="normal" dataTest="wordTag">
 					{word}
 				</Tag>
 			))}
