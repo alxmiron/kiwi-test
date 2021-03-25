@@ -1,23 +1,17 @@
 import Head from "next/head";
-
-import styles from "../styles/Home.module.css";
 import { Form } from "../client/components/Form";
+import { FullScreenLayout } from "../client/components/FullScreenLayout";
 
-export default function Home() {
+const Home = () => {
 	return (
-		<div className={styles.container}>
+		<FullScreenLayout>
 			<Head>
-				<title>Create Next App</title>
+				<title>Kiwi.com Test Task</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-
-			<main className={styles.main}>
-				<h1 className={styles.title}>
-					Welcome to <a href="https://nextjs.org">Next.js!</a>
-				</h1>
-			</main>
-
 			<Form />
-		</div>
+		</FullScreenLayout>
 	);
-}
+};
+
+export default Home;
