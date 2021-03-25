@@ -7,7 +7,7 @@
 		"build": "next build",
 		"test:unit": "jest ./test",
 		"cypress:open": "cypress open",
-		"cypress:run": "cypress run --record --key aa8f06d5-4753-476f-b2c9-b94c83311b0e",
+		"cypress:run": "cypress run",
 		"test:int": "start-server-and-test start http://localhost:3000 cypress:run",
 		"start": "next start"
 	},
