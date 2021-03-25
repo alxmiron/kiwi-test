@@ -21,6 +21,21 @@ yarn build
 yarn start
 ```
 
+## Testing
+
+To run unit test use:
+
+```bash
+yarn test:unit
+```
+
+To run integration test with production app use:
+
+```bash
+yarn build
+yarn test:int
+```
+
 ## Deployed on Vercel
 
 Check out [kiwicom-test.vercel.app](https://kiwicom-test.vercel.app/) to see deployed production app
