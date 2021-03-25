@@ -1,4 +1,5 @@
 {
 	"projectId": "hy1vs2",
+	"baseUrl": "http://localhost:3000",
 	"nodeVersion": "system"
 }
