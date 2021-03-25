@@ -32,4 +32,4 @@ Check out [kiwicom-test.vercel.app](https://kiwicom-test.vercel.app/) to see dep
 * [NextJS](https://nextjs.org/)
 * [GraphQL](https://graphql.org/), [Apollo](https://www.apollographql.com/)
 * [Orbit UI](https://orbit.kiwi)
-* [Jest](https://jestjs.io/)
+* [Jest](https://jestjs.io/), [CypressIO](https://www.cypress.io/)
