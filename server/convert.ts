@@ -17,9 +17,12 @@ function convertNumberRecur(numberStr: string, prefix: string, dictTree: WordDic
 	}
 	const firstKey = numberStr[0];
 	const firstLetters: string[] = keypad[firstKey];
+	const nextNumberStr = numberStr.slice(1);
+	if (!firstLetters.length) {
+		return convertNumberRecur(nextNumberStr, prefix, dictTree);
+	}
 	const filteredLetters = firstLetters.filter((letter) => !!dictTree[letter]);
 	const nextPrefixes = filteredLetters.map((letter) => `${prefix}${letter}`);
-	const nextNumberStr = numberStr.slice(1);
 	return nextPrefixes.reduce((acc, nextPrefix, idx) => {
 		const firstLetter = filteredLetters[idx];
 		const nestedDictTree = dictTree[firstLetter];
