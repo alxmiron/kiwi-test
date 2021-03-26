@@ -1,31 +1,30 @@
 import { keypad } from "../constants/keypad";
+import { WordDictionary, getDictionary } from "./dictionary";
+
+const dictionaryTree = getDictionary();
 
 /**
- * Merges 2 plain arrays creating all possible combinations
- * Example: collectionA ["a", "b", "c"], collectionB ["d", "e", "f"] ->
- *   -> ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
- * Complexity: O(A * B), where A = collectionA.length, B = collectionB.length
- */
-function mergeCombinations(collectionA: string[], collectionB: string[]): string[] {
-	if (!collectionA.length) return collectionB;
-	if (!collectionB.length) return collectionA;
-	return collectionA.reduce((acc, itemA) => {
-		collectionB.forEach((itemB) => {
-			acc.push(`${itemA}${itemB}`);
-		});
-		return acc;
-	}, [] as string[]);
-}
-
-/**
- * Converts numeric string (like "23") to a list of possible word combinations
- * Example: "23" -> ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+ * Converts numeric string (like "27753") to a list of possible word combinations
+ * Example: "27753" -> ["apple"]
  * Complexity: O(4^N), where N is numberStr.length
  * 4 is a maximum amount of letters assigned to a key number
  */
-export function convertNumber(numberStr: string): string[] {
-	if (numberStr.length === 0) return [];
-	if (numberStr.length === 1) return keypad[numberStr];
+function convertNumberRecur(numberStr: string, prefix: string, dictTree: WordDictionary): string[] {
+	if (numberStr.length === 0) return [prefix];
 	const firstKey = numberStr[0];
-	return mergeCombinations(keypad[firstKey], convertNumber(numberStr.slice(1)));
+	const firstLetters: string[] = keypad[firstKey];
+	const filteredLetters = firstLetters.filter((letter) => !!dictTree[letter]);
+	const nextPrefixes = filteredLetters.map((letter) => `${prefix}${letter}`);
+	const nextNumberStr = numberStr.slice(1);
+	return nextPrefixes.reduce((acc, nextPrefix, idx) => {
+		const firstLetter = filteredLetters[idx];
+		const nestedDictTree = dictTree[firstLetter];
+		const nextNestedDictTree = typeof nestedDictTree === "object" ? nestedDictTree : {};
+		return acc.concat(convertNumberRecur(nextNumberStr, nextPrefix, nextNestedDictTree));
+	}, [] as string[]);
+}
+
+export function convertNumber(numberStr: string): string[] {
+	const result = convertNumberRecur(numberStr, "", dictionaryTree);
+	return result;
 }

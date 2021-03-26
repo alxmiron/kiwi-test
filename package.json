@@ -1,7 +1,6 @@
 {
 	"name": "kiwicom-test",
 	"version": "0.1.0",
-	"private": true,
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
@@ -19,7 +18,8 @@
 		"next": "10.0.9",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
-		"styled-components": "^4.4.1"
+		"styled-components": "^4.4.1",
+		"wordlist-english": "^1.2.1"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.22",
@@ -31,6 +31,7 @@
 		"prettier": "^2.2.1",
 		"start-server-and-test": "^1.12.1",
 		"ts-jest": "^26.5.4",
+		"ts-node": "^9.1.1",
 		"typescript": "^4.2.3"
 	}
 }

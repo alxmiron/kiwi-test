@@ -1,7 +1,7 @@
 import { FunctionComponent, memo, useState } from "react";
-import { Box, ButtonLink, InputField, Loading } from "@kiwicom/orbit-components";
+import { Box, ButtonLink, InputField } from "@kiwicom/orbit-components";
 import { Remove as RemoveIcon } from "@kiwicom/orbit-components/lib/icons";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Keypad } from "./Keypad";
 import { WordsList } from "./WordsList";
 import { ConvertArgs } from "../../interface/convert";
@@ -12,32 +12,30 @@ import s from "./Form.module.css";
 
 const FormComponent: FunctionComponent = () => {
 	const [inputValue, setInputValue] = useState("");
-	const debouncedValue = useDebounce(inputValue, 500, { resetEmptyImmediately: true });
+	const debouncedValue = useDebounce(inputValue, 300, { resetEmptyImmediately: true });
+	const maxLength = 9;
 	const { data, loading } = useQuery<ConvertQueryType, ConvertArgs>(convertQuery, {
 		variables: {
-			number: debouncedValue ? Number(debouncedValue) : 0,
+			number: debouncedValue ? Number(debouncedValue.slice(0, maxLength)) : 0,
 		},
 	});
 
-	const onKeyPress = (id: number) => {
-		if (inputValue.length >= 10) return;
-		setInputValue(`${inputValue}${id}`);
-	};
-	const onInputClear = () => setInputValue("");
-	const shouldRenderLoader = !!(loading && inputValue);
+	const onKeyPress = (id: number) => setInputValue(`${inputValue}${id}`);
+	const onInputClear = () => setInputValue(inputValue.slice(0, inputValue.length - 1));
 
 	return (
 		<Box className={s.wrapperStack}>
 			<Box className={s.resultList}>
 				<WordsList list={data?.convert.result} loading={loading} />
 			</Box>
-			<Box>{shouldRenderLoader && <Loading type="boxLoader" />}</Box>
 			<Box className={s.inputContainer}>
 				<InputField
 					inputMode="numeric"
 					type="number"
 					value={inputValue}
 					dataTest="numericInput"
+					maxLength={100}
+					error={inputValue.length >= maxLength ? "Max length is 9" : undefined}
 					readOnly
 					suffix={
 						<ButtonLink

@@ -1,9 +1,9 @@
 import { convertNumber } from "../server/convert";
 
 describe("convertNumber()", () => {
-	it("should calculate 2-letters words", () => {
-		const actual = convertNumber("23");
-		const expected = ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"];
+	it("should calculate 5-letters words", () => {
+		const actual = convertNumber("27753");
+		const expected = ["apple"];
 
 		expect(actual).toEqual(expected);
 	});
