@@ -10,7 +10,11 @@ const dictionaryTree = getDictionary();
  * 4 is a maximum amount of letters assigned to a key number
  */
 function convertNumberRecur(numberStr: string, prefix: string, dictTree: WordDictionary): string[] {
-	if (numberStr.length === 0) return [prefix];
+	if (numberStr.length === 0) {
+		if (!prefix) return [];
+		if (dictTree.word) return [prefix];
+		return [`${prefix}...`];
+	}
 	const firstKey = numberStr[0];
 	const firstLetters: string[] = keypad[firstKey];
 	const filteredLetters = firstLetters.filter((letter) => !!dictTree[letter]);
