@@ -21,8 +21,6 @@ context("Aliasing", () => {
 	it("should clear input", () => {
 		enterKeys("23");
 		cy.get("button[data-test='clearInputButton']").click();
-		cy.get("input[data-test='numericInput']").should("have.value.value", 2);
-		cy.get("button[data-test='clearInputButton']").click();
 		cy.get("input[data-test='numericInput']").should("not.have.value");
 	});
 
