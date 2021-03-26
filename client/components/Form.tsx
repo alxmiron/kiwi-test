@@ -21,7 +21,7 @@ const FormComponent: FunctionComponent = () => {
 	});
 
 	const onKeyPress = (id: number) => setInputValue(`${inputValue}${id}`);
-	const onInputClear = () => setInputValue(inputValue.slice(0, inputValue.length - 1));
+	const onInputClear = () => setInputValue("");
 
 	return (
 		<Box className={s.wrapperStack}>
