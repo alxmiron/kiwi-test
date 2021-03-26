@@ -1,7 +1,6 @@
 {
 	"name": "kiwicom-test",
 	"version": "0.1.0",
-	"private": true,
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
@@ -9,9 +8,7 @@
 		"cypress:open": "cypress open",
 		"cypress:run": "cypress run",
 		"test:int": "start-server-and-test start http://localhost:3000 cypress:run",
-		"build-local-dictionary": "yarn ts-node --project ./server/tsconfig.json ./server/buildDictionary.ts",
-		"start": "next start",
-		"clear": "rm -rf .next && rm -f server/dictionary.json"
+		"start": "next start"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.3.13",

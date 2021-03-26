@@ -4,6 +4,13 @@ This is a test task for [Kiwi.com](https://www.kiwi.com/) Senior Frontend Engine
 
 This [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Assignment
+
+The backend should provide an endpoint that converts a given numeric string into a list of corresponding words in the style of [T9](https://en.wikipedia.org/wiki/T9_(predictive_text)) or [Phonewords](https://en.wikipedia.org/wiki/Phoneword). The frontend should allow the user to enter a number, query the backend for the corresponding expansions, and display them.
+Additional requirement is that list of results should be filtered to include only real words based on a dictionary.
+
+I used [wordlist-english module](https://www.npmjs.com/package/wordlist-english) to build a dictionary, obtained from the [SCOWL](http://wordlist.aspell.net/) project.
+
 ## Getting Started
 
 First, run the development server:
