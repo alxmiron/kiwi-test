@@ -1,4 +1,7 @@
 import { keypad } from "../constants/keypad";
+import { getDictionary } from "./dictionary";
+
+const dictionaryTree = getDictionary(20);
 
 /**
  * Merges 2 plain arrays creating all possible combinations
